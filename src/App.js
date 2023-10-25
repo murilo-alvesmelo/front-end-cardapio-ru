@@ -1,6 +1,5 @@
 import React from 'react';
-import './styles/cadastro.css';
-import Cadastro from './screens/cadastro/cadastro';
+import Cadastro from './screens/cadastro';
 
 function App() {
     return <Cadastro />;
