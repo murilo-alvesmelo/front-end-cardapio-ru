@@ -1,0 +1,67 @@
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Esta linha define a altura do body como a altura total da janela */
+    margin: 0;      /* Remove margens padrão */
+}
+
+.container {
+    width: 280px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-group img {
+    width: 130px;
+    height: auto;  
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%;
+}
+
+button {
+    padding: 10px 15px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white; 
+    flex: 1; 
+    margin: 0 5px;
+}
+
+button.login {
+    background-color: #FFD700; 
+}
+
+button.cadastrar {
+    background-color: #007BFF; 
+}
