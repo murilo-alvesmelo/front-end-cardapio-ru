@@ -9,6 +9,7 @@ function Refeicoes() {
         leguminosas: '',
         carboidrato: '',
         estimateAt: '',
+        tipoRefeicao: '',
     });
 
     const handleChange = (e) => {
@@ -46,6 +47,12 @@ function Refeicoes() {
             <div className="form-group">
                 <input className="input-field" type="text" name="carboidrato" placeholder="Carboidrato" onChange={handleChange} />
                 <input className="input-field" type="date" name="estimateAt" onChange={handleChange} />
+                <label> Tipo de Refeição: </label>
+                <select name="tipoRefeicao" value={form.tipoRefeicao} onChange={handleChange} className="input-field">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="Almoço">Almoço</option>
+                    <option value="Jantar">Jantar</option>
+                </select>
             </div>
             <div className="button-group">
                 <button className="button" onClick={handleSubmit}>Finalizar</button>
