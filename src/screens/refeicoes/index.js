@@ -9,7 +9,6 @@ function Refeicoes() {
         leguminosas: '',
         carboidrato: '',
         estimateAt: '',
-        tipoRefeicao: '',
     });
 
     const handleChange = (e) => {
@@ -17,7 +16,9 @@ function Refeicoes() {
         setForm({ ...form, [name]: value });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Isso impede que o navegador recarregue a página ao enviar o formulário
+
         try {
             const response = await fetch('http://localhost:5000/your_endpoint_here', {
                 method: 'POST',
@@ -26,6 +27,11 @@ function Refeicoes() {
                 },
                 body: JSON.stringify(form),
             });
+
+            if (!response.ok) {
+                throw new Error('Erro ao salvar dados!');
+            }
+
             const data = await response.json();
             console.log(data);
         } catch (error) {
@@ -36,28 +42,25 @@ function Refeicoes() {
     return (
         <div className="container">
             <div className="header">Cadastro de Refeições</div>
-            <div className="form-group">
-                <input className="input-field" type="text" name="refeicao" placeholder="Refeição" onChange={handleChange} />
-                <input className="input-field" type="text" name="salada" placeholder="Salada" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <input className="input-field" type="text" name="guarnicao" placeholder="Guarnição" onChange={handleChange} />
-                <input className="input-field" type="text" name="leguminosas" placeholder="Leguminosas" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-                <input className="input-field" type="text" name="carboidrato" placeholder="Carboidrato" onChange={handleChange} />
-                <input className="input-field" type="date" name="estimateAt" onChange={handleChange} />
-                <label> Tipo de Refeição: </label>
-                <select name="tipoRefeicao" value={form.tipoRefeicao} onChange={handleChange} className="input-field">
-                    <option value="" disabled selected>Selecione uma opção</option>
-                    <option value="Almoço">Almoço</option>
-                    <option value="Jantar">Jantar</option>
-                </select>
-            </div>
-            <div className="button-group">
-                <button className="button" onClick={handleSubmit}>Finalizar</button>
-                <button className="button">Voltar</button>
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <input className="input-field" type="text" name="refeicao" placeholder="Refeição" onChange={handleChange} />
+                    <input className="input-field" type="text" name="salada" placeholder="Salada" onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <input className="input-field" type="text" name="guarnicao" placeholder="Guarnição" onChange={handleChange} />
+                    <input className="input-field" type="text" name="leguminosas" placeholder="Leguminosas" onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <input className="input-field" type="text" name="carboidrato" placeholder="Carboidrato" onChange={handleChange} />
+                    <input className="input-field" type="date" name="estimateAt" onChange={handleChange} />
+                </div>
+                <div className="button-group">
+                    <button className="button" type="submit">Finalizar</button>
+                    <button className="button" type="button">Voltar</button> 
+                    {/* Adicionado type="button" para evitar que este botão tente enviar o formulário */}
+                </div>
+            </form>
         </div>
     );
 }
