@@ -11,6 +11,7 @@ import Cadastro from "./screens/cadastro";
 import Login from "./screens/login";
 import Home from "./screens/Home";
 import Refeicoes from "./screens/refeicoes"
+import Listagem from "./screens/listagem";
 
 function App() {
   const PrivateRoutes = () => {
@@ -31,8 +32,8 @@ function App() {
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/" element={<Login />} />
         <Route path="/refeicoes" element={<Refeicoes />} />
+        <Route path="/listagem" element={<Listagem />} />
       </Routes>
     </Router>
   );
