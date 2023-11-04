@@ -36,6 +36,7 @@ function App() {
         <Route path="/refeicoes" element={<Refeicoes />} />
         <Route path="/listagem" element={<Listagem />} />
         <Route path="/refeicao/:id" element={<Refeicao />} />
+        <Route path="/editar-refeicao/:id" element={<Refeicoes isEditing={true} />} />
       </Routes>
     </Router>
   );

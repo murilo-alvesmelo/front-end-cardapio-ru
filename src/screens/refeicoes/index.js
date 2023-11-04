@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function Refeicoes() {
+function Refeicoes({ isEditing }) {
     const [form, setForm] = useState({
         refeicao: '',
         salada: '',
@@ -12,6 +12,40 @@ function Refeicoes() {
         estimateAt: '',
     });
     const navigate = useNavigate();
+    const { id } = useParams(); // Usado para identificar a refeição em caso de edição
+
+    useEffect(() => {
+        if (isEditing) {
+            const fetchData = async () => {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('Não autorizado. Faça o login novamente.');
+                    navigate('/login');
+                } else {
+                    try {
+                        const response = await fetch(`http://localhost:5000/cardapio/${id}`, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Erro ao buscar dados!');
+                        }
+
+                        const data = await response.json();
+                        setForm(data); // Atualiza o estado do formulário com os dados recebidos
+                    } catch (error) {
+                        console.error('Erro na requisição:', error);
+                        alert(error.message);
+                    }
+                }
+            };
+
+            fetchData();
+        }
+    }, [id, isEditing, navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,56 +55,39 @@ function Refeicoes() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
-    
+
         if (!token) {
             alert('Não autorizado. Faça o login novamente.');
             navigate('/login');
             return;
         }
-    
+
+        const method = isEditing ? 'PUT' : 'POST';
+        const url = isEditing ? `http://localhost:5000/cardapio/${id}` : 'http://localhost:5000/cardapio';
+
         try {
-            const response = await fetch('http://localhost:5000/cardapio', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method: method,
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(form),
             });
-    
-            // A resposta não é OK e também não é JSON válido
-            if (!response.ok) {
-                if (response.headers.get('Content-Type')?.includes('application/json')) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Erro ao salvar dados!');
-                } else {
-                    // Lidar com respostas não-JSON
-                    const errorText = await response.text();
-                    throw new Error(errorText || 'Erro desconhecido ocorreu!');
-                }
-            }
-    
-            // Se a resposta for OK, mas sem conteúdo.
-            if (response.status === 204) {
-                alert('Refeição cadastrada com sucesso!');
-                navigate('/listagem');
-                return;
-            }
-    
-            // Somente analisar como JSON se a resposta tiver conteúdo
-            const data = await response.json();
-            console.log(data);
+
+            if (!response.ok) throw new Error('Falha ao salvar dados!');
+
             alert('Refeição cadastrada com sucesso!');
-            navigate('/rota-apos-cadastro');
+            navigate('/listagem'); // Modifique esta linha para a rota que deseja redirecionar após a operação
         } catch (error) {
             console.error("Erro ao enviar dados:", error);
             alert(error.message || 'Falha ao cadastrar refeição.');
         }
     };
-    
+
     return (
         <div className="container">
-            <div className="header">Cadastro de Refeições</div>
+            <div className="header">{isEditing ? 'Editar Refeição' : 'Cadastro de Refeições'}</div>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input className="input-field" type="text" name="refeicao" placeholder="Refeição" value={form.refeicao} onChange={handleChange} />
@@ -85,7 +102,7 @@ function Refeicoes() {
                     <input className="input-field" type="date" name="estimateAt" value={form.estimateAt} onChange={handleChange} />
                 </div>
                 <div className="button-group">
-                    <button className="button" type="submit">Finalizar</button>
+                    <button className="button" type="submit">{isEditing ? 'Atualizar' : 'Finalizar'}</button>
                     <button className="button" type="button" onClick={() => navigate(-1)}>Voltar</button>
                 </div>
             </form>
