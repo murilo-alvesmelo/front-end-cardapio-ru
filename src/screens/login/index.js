@@ -19,15 +19,18 @@ function Login() {
       alert("Email inválido");
       return;
     }
-
-    api.post("/login", { email, password })
+    api
+      .post("/login", { email, password })
       .then((response) => {
         console.log(response.data);
         // Armazenar os dados do usuário e o token no localStorage
-        localStorage.setItem("user", JSON.stringify({
-          nome: response.data.name,
-          email: response.data.email,
-        }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            nome: response.data.name,
+            email: response.data.email,
+          })
+        );
         localStorage.setItem("token", response.data.token);
         // Navegar para a rota '/root'
         navigate("/root");
