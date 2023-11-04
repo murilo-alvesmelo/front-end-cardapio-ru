@@ -12,6 +12,7 @@ import Login from "./screens/login";
 import Home from "./screens/Home";
 import Refeicoes from "./screens/refeicoes"
 import Listagem from "./screens/listagem";
+import Refeicao from './screens/refeicao';
 
 function App() {
   const PrivateRoutes = () => {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/refeicoes" element={<Refeicoes />} />
         <Route path="/listagem" element={<Listagem />} />
+        <Route path="/refeicao/:id" element={<Refeicao />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,24 @@
+.refeicao-detalhes {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.refeicao-detalhes .detalhes {
+    margin-top: 20px;
+}
+
+.refeicao-detalhes h1 {
+    color: #333;
+    text-align: center;
+}
+
+.refeicao-detalhes p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
