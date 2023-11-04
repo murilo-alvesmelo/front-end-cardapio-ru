@@ -10,6 +10,9 @@ import Root from "./screens/root";
 import Cadastro from "./screens/cadastro";
 import Login from "./screens/login";
 import Home from "./screens/Home";
+import Refeicoes from "./screens/refeicoes"
+import Listagem from "./screens/listagem";
+import Refeicao from './screens/refeicao';
 
 function App() {
   const PrivateRoutes = () => {
@@ -30,6 +33,10 @@ function App() {
         </Route>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/refeicoes" element={<Refeicoes />} />
+        <Route path="/listagem" element={<Listagem />} />
+        <Route path="/refeicao/:id" element={<Refeicao />} />
+        <Route path="/editar-refeicao/:id" element={<Refeicoes isEditing={true} />} />
       </Routes>
     </Router>
   );

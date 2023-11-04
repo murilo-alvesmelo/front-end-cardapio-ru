@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,34 +10,32 @@ function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (email === "" || password === "")
-      return alert("Preencha todos os campos");
-
-    if (!email.includes("@")) return alert("Email inválido");
-
-    if (email && password) {
-      api
-        .post("/login", {
-          email: email,
-          password: password,
-        })
-        .then((response) => {
-          console.log(response.data);
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              nome: response.data.name,
-              email: response.data.email,
-            })
-          );
-          localStorage.setItem("token", response.data.token);
-          navigate("/root");
-        })
-        .catch((error) => {
-          alert("Email ou senha incorretos");
-          console.log(error);
-        });
+    if (!email || !password) {
+      alert("Preencha todos os campos");
+      return;
     }
+
+    if (!email.includes("@")) {
+      alert("Email inválido");
+      return;
+    }
+
+    api.post("/login", { email, password })
+      .then((response) => {
+        console.log(response.data);
+        // Armazenar os dados do usuário e o token no localStorage
+        localStorage.setItem("user", JSON.stringify({
+          nome: response.data.name,
+          email: response.data.email,
+        }));
+        localStorage.setItem("token", response.data.token);
+        // Navegar para a rota '/root'
+        navigate("/root");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Email ou senha incorretos");
+      });
   };
 
   return (
@@ -62,7 +61,11 @@ function Login() {
           <button className="login" type="submit">
             Login
           </button>
-          <button className="cadastrar" onClick={() => navigate("/cadastro")}>
+          <button
+            type="button" // Isso evita que o botão submeta o formulário
+            className="cadastrar"
+            onClick={() => navigate("/cadastro")}
+          >
             Cadastrar
           </button>
         </div>
