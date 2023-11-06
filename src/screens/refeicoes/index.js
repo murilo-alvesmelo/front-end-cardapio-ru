@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
+import Footer from '../../components/footer/index';
 
 function Refeicoes({ isEditing }) {
   const [form, setForm] = useState({
@@ -118,6 +119,7 @@ function Refeicoes({ isEditing }) {
           </button>
         </div>
       </form>
+      <Footer/>
     </div>
   );
 }
