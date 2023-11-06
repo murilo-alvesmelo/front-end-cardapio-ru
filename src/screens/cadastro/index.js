@@ -2,6 +2,7 @@ import "./styles.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import Footer from '../../components/footer/index';
 
 function Cadastro() {
   const [nome, setNome] = useState("");
@@ -79,6 +80,7 @@ function Cadastro() {
           <button className="cadastrar">Cadastrar</button>
         </div>
       </form>
+      <Footer/>
     </div>
   );
 }

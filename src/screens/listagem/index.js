@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "./styles.css";
 import api from "../../services/api";
 import moment from "moment/moment";
+import Footer from '../../components/footer/index';
 
 function Listagem() {
   const [refeicoes, setRefeicoes] = useState([]);
@@ -60,6 +61,7 @@ function Listagem() {
           ))}
         </tbody>
       </table>
+      <Footer/>
     </div>
   );
 }
