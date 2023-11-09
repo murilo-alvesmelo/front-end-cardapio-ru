@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styles.css";
 import api from "../../services/api";
-import Footer from '../../components/footer/index';
 
 function Refeicao() {
   const [refeicao, setRefeicao] = useState(null);
@@ -75,7 +74,6 @@ function Refeicao() {
       <button onClick={handleDelete} className="botao-apagar">
         Apagar
       </button>
-      <Footer/>
     </div>
   );
 }

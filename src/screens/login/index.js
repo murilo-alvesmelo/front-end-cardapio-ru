@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./styles.css";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import Footer from '../../components/footer/index';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -74,7 +73,6 @@ function Login() {
           </button>
         </div>
       </form>
-      <Footer/>
     </div>
   );
 }

@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000080;
+  color: white;
+  padding: 8px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.nav-icon {
+  font-size: 24px; 
+  color: white;
+  cursor: pointer;
+}
+
+.nav-icon-placeholder {
+  font-size: 24px; 
+  visibility: hidden; 
+}
+
+.nav-icon, .nav-icon-placeholder {
+  padding: 0 10px; 
+}
