@@ -12,7 +12,7 @@ import Login from "./screens/login";
 import Refeicoes from "./screens/refeicoes";
 import Listagem from "./screens/listagem";
 import Refeicao from "./screens/refeicao";
-import Navbar from './components/navbar/index';
+import Navbar from "./components/navbar/index";
 import Footer from "./components/footer";
 
 function App() {
@@ -26,25 +26,25 @@ function App() {
 
   return (
     <>
-    <Navbar/>
-    <Router>
-      <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route path="/root" element={<Root />}>
-            <Route path="" element={<Listagem/>} />
-            <Route path="refeicoes" element={<Refeicoes />} />
-            <Route path="refeicao/:id" element={<Refeicao />} />
-            <Route
-              path="editar-refeicao/:id"
-              element={<Refeicoes isEditing={true} />}
-            />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route path="/root" element={<Root />}>
+              <Route path="" element={<Listagem />} />
+              <Route path="refeicoes" element={<Refeicoes />} />
+              <Route path="refeicao/:id" element={<Refeicao />} />
+              <Route
+                path="editar-refeicao/:id"
+                element={<Refeicoes isEditing={true} />}
+              />
+            </Route>
           </Route>
-        </Route>
-        <Route path="/" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-      </Routes>
-    </Router>
-    <Footer/>
+          <Route path="/" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+        </Routes>
+        <Footer />
+      </Router>
     </>
   );
 }
