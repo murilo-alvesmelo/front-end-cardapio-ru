@@ -29,7 +29,7 @@ function Refeicao() {
         .delete(`/cardapio/${id}`)
         .then((response) => {
           alert("Refeição apagada com sucesso!");
-          navigate("/root/listagem");
+          navigate("/root");
         })
         .catch((error) => {
           console.log(error);

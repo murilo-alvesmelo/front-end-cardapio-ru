@@ -22,8 +22,6 @@ function Login() {
     api
       .post("/login", { email, password })
       .then((response) => {
-        console.log(response.data);
-        // Armazenar os dados do usuário e o token no localStorage
         localStorage.setItem(
           "user",
           JSON.stringify({
