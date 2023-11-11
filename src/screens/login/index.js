@@ -30,7 +30,6 @@ function Login() {
           })
         );
         localStorage.setItem("token", response.data.token);
-        // Navegar para a rota '/root'
         navigate("/root");
       })
       .catch((error) => {
@@ -63,7 +62,7 @@ function Login() {
             Login
           </button>
           <button
-            type="button" // Isso evita que o botão submeta o formulário
+            type="button" 
             className="cadastrar"
             onClick={() => navigate("/cadastro")}
           >
