@@ -1,23 +1,15 @@
-body {
-    background-color: white;
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.div-cadastro {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
-    margin: 0;    
 }
-
-.container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 
 .container h2 {
     text-align: center;

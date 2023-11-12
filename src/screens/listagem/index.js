@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import api from "../../services/api";
 import moment from "moment/moment";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
 function Listagem() {
   const [refeicoes, setRefeicoes] = useState([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   async function getCardapio() {
     const maxDate = moment().add({ days: 30 }).format("YYYY-MM-DD 23:59:59");
@@ -33,41 +44,51 @@ function Listagem() {
   }, []);
 
   const handleRowClick = (id) => {
-    navigate(`/root/refeicoes/${id}`); 
+    navigate(`/root/refeicoes/${id}`);
   };
 
   return (
-    <div className="lista-refeicoes">
-      <h1>Listagem de Refeições</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Dia</th>
-            <th>Prato</th>
-          </tr>
-        </thead>
-        <tbody>
-          {refeicoes.map((refeicao) => (
-            <tr
-              key={refeicao.id}
-              onClick={() => handleRowClick(refeicao.id)}
-              style={{ cursor: "pointer" }}
-            >
-              <td>
-                {new Date(refeicao.estimateAt).toLocaleDateString("pt-BR")}
-              </td>
-              <td>
-                {new Date(refeicao.estimateAt).toLocaleDateString("pt-BR", {
-                  weekday: "long",
-                })}
-              </td>
-              <td>{refeicao.refeicao}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <section className="container">
+      <div className="lista-refeicoes">
+        <TableContainer component={Paper}>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Dia</TableCell>
+                <TableCell>Dia da semana</TableCell>
+                <TableCell>Prato</TableCell>
+                <TableCell>Ação</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {refeicoes.map((refeicao) => (
+                <TableRow key={refeicao.id}>
+                  <TableCell align="center">{refeicao.id}</TableCell>
+                  <TableCell align="center">
+                    {moment(refeicao.estimateAt).format("DD/MM/YYYY")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment(refeicao.estimateAt).locale("pt-br").format("dddd")}
+                  </TableCell>
+                  <TableCell align="center">{refeicao.refeicao}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      style={{ height: 30 }}
+                      endIcon={<EditIcon />}
+                      onClick={() => handleRowClick(refeicao.id)}
+                    >
+                      Editar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </section>
   );
 }
 

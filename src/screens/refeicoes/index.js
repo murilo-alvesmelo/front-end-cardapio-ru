@@ -96,141 +96,150 @@ function Refeicoes() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-header">
-          <ArrowBackIcon
-            className="icone-voltar"
-            onClick={() => navigate("/root")}
-          />
-          <h2 className="form-title">{getTitle()}</h2>
-        </div>
-        <div className="form-group">
-          <CalendarMonth className="input-icon" />
-          <label htmlFor="estimateAt" className="input-label">
-            Data
-          </label>
-          <input
-            className="input-field"
-            type="date"
-            id="estimateAt"
-            name="estimateAt"
-            value={form.estimateAt}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="form-group">
-          <Restaurant className="input-icon" />
-          <label htmlFor="refeicao" className="input-label">
-            Refeição
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="refeicao"
-            name="refeicao"
-            placeholder="Digite o nome da refeição"
-            value={form.refeicao}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="form-group">
-          <Restaurant className="input-icon" />
-          <label htmlFor="salada" className="input-label">
-            Salada
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="salada"
-            name="salada"
-            placeholder="Digite a salada"
-            value={form.salada}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="form-group">
-          <Restaurant className="input-icon" />
-          <label htmlFor="guarnicao" className="input-label">
-            Guarnição
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="guarnicao"
-            name="guarnicao"
-            placeholder="Digite a guarnição"
-            value={form.guarnicao}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="form-group">
-          <Restaurant className="input-icon" />
-          <label htmlFor="leguminosas" className="input-label">
-            Leguminosas
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="leguminosas"
-            name="leguminosas"
-            placeholder="Digite as leguminosas"
-            value={form.leguminosas}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
-        <div className="form-group">
-          <Restaurant className="input-icon" />
-          <label htmlFor="carboidrato" className="input-label">
-            Carboidrato
-          </label>
-          <input
-            className="input-field"
-            type="text"
-            id="carboidrato"
-            name="carboidrato"
-            placeholder="Digite o carboidrato"
-            value={form.carboidrato}
-            onChange={handleChange}
-            disabled={!isEditing}
-          />
-        </div>
+    <section className="container">
+      <div className="div-refeicoes">
+        <h2>{getTitle()}</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <CalendarMonth className="input-icon" />
+            <label htmlFor="estimateAt" className="input-label">
+              Data
+            </label>
+            <input
+              className="input-field"
+              type="date"
+              id="estimateAt"
+              name="estimateAt"
+              value={form.estimateAt}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="refeicao" className="input-label">
+              Refeição
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="refeicao"
+              name="refeicao"
+              placeholder="Digite o nome da refeição"
+              value={form.refeicao}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="salada" className="input-label">
+              Salada
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="salada"
+              name="salada"
+              placeholder="Digite a salada"
+              value={form.salada}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="guarnicao" className="input-label">
+              Guarnição
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="guarnicao"
+              name="guarnicao"
+              placeholder="Digite a guarnição"
+              value={form.guarnicao}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="leguminosas" className="input-label">
+              Leguminosas
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="leguminosas"
+              name="leguminosas"
+              placeholder="Digite as leguminosas"
+              value={form.leguminosas}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="carboidrato" className="input-label">
+              Carboidrato
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="carboidrato"
+              name="carboidrato"
+              placeholder="Digite o carboidrato"
+              value={form.carboidrato}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
 
-        <div className="button-group">
-          {!id && (
-            <button className="button" type="submit">
-              Salvar
-            </button>
-          )}
-          {id && !isEditing && (
-            <button className="button" type="button" onClick={toggleEditing}>
-              <EditIcon />
-              Editar
-            </button>
-          )}
-          {id && isEditing && (
-            <button className="button" type="submit">
-              <CachedIcon />
-              Atualizar
-            </button>
-          )}
-          {id && !isEditing && (
-            <button
-              className="button button-delete"
-              type="button"
-              onClick={handleDelete}
-            >
-              <DeleteIcon /> Apagar
-            </button>
-          )}
-        </div>
-      </form>
-    </div>
+          <div className="button-group">
+            <div className="div-button">
+              <button
+                className="button"
+                type="button"
+                onClick={() => navigate("/root")}
+              >
+                <ArrowBackIcon className="icone-voltar" />
+              </button>
+              {!id && (
+                <button className="button" type="submit">
+                  Salvar
+                </button>
+              )}
+              {id && !isEditing && (
+                <button
+                  className="button"
+                  type="button"
+                  onClick={toggleEditing}
+                >
+                  <EditIcon />
+                  Editar
+                </button>
+              )}
+              {id && isEditing && (
+                <button className="button" type="submit">
+                  <CachedIcon />
+                  Atualizar
+                </button>
+              )}
+              {id && !isEditing && (
+                <button
+                  className="button button-delete"
+                  type="button"
+                  onClick={handleDelete}
+                >
+                  <DeleteIcon /> Apagar
+                </button>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 
