@@ -1,7 +1,7 @@
 import "./styles.css";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
+import React, { useState, useEffect } from "react";
 
 function Cadastro() {
   const [nome, setNome] = useState("");
@@ -9,6 +9,14 @@ function Cadastro() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Cadastro - Cardápio RU";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = `${process.env.PUBLIC_URL}../../assets/brasaoUFT.png`;
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

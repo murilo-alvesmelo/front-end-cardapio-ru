@@ -16,6 +16,14 @@ function Refeicoes({ isEditing }) {
   const { id } = useParams(); // Usado para identificar a refeição em caso de edição
 
   useEffect(() => {
+    document.title = "Refeições - Cardápio RU";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = `${process.env.PUBLIC_URL}../../assets/brasaoUFT.png`;
+    }
+  }, []);
+
+  useEffect(() => {
     if (isEditing) {
       api
         .get(`/cardapio/${id}`)
