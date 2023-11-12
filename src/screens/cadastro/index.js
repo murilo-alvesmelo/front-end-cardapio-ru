@@ -36,8 +36,8 @@ function Cadastro() {
   };
 
   return (
-    <div className="container">
-      <form className="form-group" onSubmit={handleSubmit}>
+    <div className="container-login">
+      <form className="form-group-login" onSubmit={handleSubmit}>
         <img
           src={process.env.PUBLIC_URL + "/assets/brasaoUFT.png"}
           alt="Logo UFT"

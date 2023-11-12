@@ -39,8 +39,8 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <form className="form-group" onSubmit={handleLogin}>
+    <div className="container-login">
+      <form className="form-group-login" onSubmit={handleLogin}>
         <img
           src={process.env.PUBLIC_URL + "/assets/brasaoUFT.png"}
           alt="Logo UFT"
@@ -62,7 +62,7 @@ function Login() {
             Login
           </button>
           <button
-            type="button" 
+            type="button"
             className="cadastrar"
             onClick={() => navigate("/cadastro")}
           >
