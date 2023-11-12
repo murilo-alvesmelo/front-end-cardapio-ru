@@ -47,38 +47,40 @@ function Login() {
   };
 
   return (
-    <div className="container-login">
-      <form className="form-group-login" onSubmit={handleLogin}>
-        <img
-          src={process.env.PUBLIC_URL + "/assets/brasaoUFT.png"}
-          alt="Logo UFT"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div>
-          <button className="login" type="submit">
-            Login
-          </button>
-          <button
-            type="button"
-            className="cadastrar"
-            onClick={() => navigate("/cadastro")}
-          >
-            Cadastrar
-          </button>
-        </div>
-      </form>
-    </div>
+    <section className="container">
+      <div className="div-login">
+        <form className="form-group-login" onSubmit={handleLogin}>
+          <img
+            src={process.env.PUBLIC_URL + "/assets/brasaoUFT.png"}
+            alt="Logo UFT"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div>
+            <button className="login" type="submit">
+              Login
+            </button>
+            <button
+              type="button"
+              className="cadastrar"
+              onClick={() => navigate("/cadastro")}
+            >
+              Cadastrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 
