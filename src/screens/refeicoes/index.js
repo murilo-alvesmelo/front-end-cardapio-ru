@@ -34,7 +34,7 @@ function Refeicoes() {
           console.error("Erro na requisição:", error);
         });
     } else {
-      setIsEditing(true); // Modo de cadastro
+      setIsEditing(true);
     }
   }, [id]);
 
