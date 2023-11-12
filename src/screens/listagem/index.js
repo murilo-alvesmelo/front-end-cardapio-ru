@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import api from "../../services/api";
 import moment from "moment/moment";
-import Footer from '../../components/footer/index';
 
 function Listagem() {
   const [refeicoes, setRefeicoes] = useState([]);
-  const navigate = useNavigate(); // Inicializar useNavigate
+  const navigate = useNavigate(); 
 
   async function getCardapio() {
     const maxDate = moment().add({ days: 30 }).format("YYYY-MM-DD 23:59:59");
@@ -33,9 +32,8 @@ function Listagem() {
     getCardapio();
   }, []);
 
-  // Função para lidar com o clique na linha da tabela
   const handleRowClick = (id) => {
-    navigate(`/root/refeicao/${id}`); // Usar a função navigate para redirecionar
+    navigate(`/root/refeicoes/${id}`); 
   };
 
   return (
@@ -51,7 +49,6 @@ function Listagem() {
         </thead>
         <tbody>
           {refeicoes.map((refeicao) => (
-            // Adicionando o evento onClick para cada linha da tabela
             <tr
               key={refeicao.id}
               onClick={() => handleRowClick(refeicao.id)}
@@ -70,7 +67,6 @@ function Listagem() {
           ))}
         </tbody>
       </table>
-      <Footer/>
     </div>
   );
 }

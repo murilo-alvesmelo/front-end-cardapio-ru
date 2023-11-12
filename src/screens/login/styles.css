@@ -1,35 +1,41 @@
 body {
-    background-color: white;
+    background-color: #D8D8D8;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;  /* Esta linha define a altura do body como a altura total da janela */
-    margin: 0;      /* Remove margens padrão */
+    height: 100vh;
+    margin: 0;      
 }
 
-.container {
-    width: 280px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.container-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-
-.container h2 {
+.container-login h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-.form-group {
+.form-group-login {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
+    width: 280px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.form-group img {
+.form-group-login img {
     width: 130px;
+    margin-bottom: 10px;
     height: auto;  
 }
 
@@ -59,9 +65,9 @@ button {
 }
 
 button.login {
-    background-color: #FFD700; 
+    background-color: #FDB92E; 
 }
 
 button.cadastrar {
-    background-color: #007BFF; 
+    background-color: #005484; 
 }
