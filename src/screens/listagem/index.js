@@ -19,6 +19,15 @@ function Listagem() {
         console.log(error);
       });
   }
+
+  useEffect(() => {
+    document.title = "Listagem - Cardápio RU";
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) {
+      link.href = `${process.env.PUBLIC_URL}../../assets/brasaoUFT.png`;
+    }
+  }, []);
+
   useEffect(() => {
     getCardapio();
   }, []);

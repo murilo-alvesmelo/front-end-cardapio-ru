@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CalendarMonth from '@mui/icons-material/CalendarMonth';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import CachedIcon from '@mui/icons-material/Cached';
-import Restaurant from '@mui/icons-material/Restaurant';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CalendarMonth from "@mui/icons-material/CalendarMonth";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import CachedIcon from "@mui/icons-material/Cached";
+import Restaurant from "@mui/icons-material/Restaurant";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -24,9 +24,10 @@ function Refeicoes() {
 
   useEffect(() => {
     if (id) {
-      api.get(`/cardapio/${id}`)
+      api
+        .get(`/cardapio/${id}`)
         .then((response) => {
-          const formattedDate = response.data.estimateAt.split('T')[0];
+          const formattedDate = response.data.estimateAt.split("T")[0];
           setForm({ ...response.data, estimateAt: formattedDate });
           setIsEditing(false);
         })
@@ -51,7 +52,9 @@ function Refeicoes() {
 
       await method(url, form)
         .then(() => {
-          const message = id ? "Refeição atualizada com sucesso!" : "Refeição cadastrada com sucesso!";
+          const message = id
+            ? "Refeição atualizada com sucesso!"
+            : "Refeição cadastrada com sucesso!";
           alert(message);
           navigate("/root/");
         })
@@ -63,12 +66,14 @@ function Refeicoes() {
   };
 
   const handleDelete = async () => {
-    const confirmDelete = window.confirm("Tem certeza que deseja apagar esta refeição?");
+    const confirmDelete = window.confirm(
+      "Tem certeza que deseja apagar esta refeição?"
+    );
     if (confirmDelete && id) {
       try {
         await api.delete(`/cardapio/${id}`);
         alert("Refeição apagada com sucesso!");
-        navigate('/root');
+        navigate("/root");
       } catch (error) {
         console.error(error);
         alert("Erro ao apagar refeição.");
@@ -94,12 +99,17 @@ function Refeicoes() {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="form-header">
-          <ArrowBackIcon className="icone-voltar" onClick={() => navigate('/root')} />
+          <ArrowBackIcon
+            className="icone-voltar"
+            onClick={() => navigate("/root")}
+          />
           <h2 className="form-title">{getTitle()}</h2>
         </div>
         <div className="form-group">
           <CalendarMonth className="input-icon" />
-          <label htmlFor="estimateAt" className="input-label">Data</label>
+          <label htmlFor="estimateAt" className="input-label">
+            Data
+          </label>
           <input
             className="input-field"
             type="date"
@@ -112,7 +122,9 @@ function Refeicoes() {
         </div>
         <div className="form-group">
           <Restaurant className="input-icon" />
-          <label htmlFor="refeicao" className="input-label">Refeição</label>
+          <label htmlFor="refeicao" className="input-label">
+            Refeição
+          </label>
           <input
             className="input-field"
             type="text"
@@ -126,7 +138,9 @@ function Refeicoes() {
         </div>
         <div className="form-group">
           <Restaurant className="input-icon" />
-          <label htmlFor="salada" className="input-label">Salada</label>
+          <label htmlFor="salada" className="input-label">
+            Salada
+          </label>
           <input
             className="input-field"
             type="text"
@@ -140,7 +154,9 @@ function Refeicoes() {
         </div>
         <div className="form-group">
           <Restaurant className="input-icon" />
-          <label htmlFor="guarnicao" className="input-label">Guarnição</label>
+          <label htmlFor="guarnicao" className="input-label">
+            Guarnição
+          </label>
           <input
             className="input-field"
             type="text"
@@ -154,7 +170,9 @@ function Refeicoes() {
         </div>
         <div className="form-group">
           <Restaurant className="input-icon" />
-          <label htmlFor="leguminosas" className="input-label">Leguminosas</label>
+          <label htmlFor="leguminosas" className="input-label">
+            Leguminosas
+          </label>
           <input
             className="input-field"
             type="text"
@@ -168,7 +186,9 @@ function Refeicoes() {
         </div>
         <div className="form-group">
           <Restaurant className="input-icon" />
-          <label htmlFor="carboidrato" className="input-label">Carboidrato</label>
+          <label htmlFor="carboidrato" className="input-label">
+            Carboidrato
+          </label>
           <input
             className="input-field"
             type="text"
@@ -180,23 +200,33 @@ function Refeicoes() {
             disabled={!isEditing}
           />
         </div>
-        
+
         <div className="button-group">
           {!id && (
-            <button className="button" type="submit">Salvar</button>
+            <button className="button" type="submit">
+              Salvar
+            </button>
           )}
           {id && !isEditing && (
             <button className="button" type="button" onClick={toggleEditing}>
-              <EditIcon />Editar</button>
+              <EditIcon />
+              Editar
+            </button>
           )}
           {id && isEditing && (
             <button className="button" type="submit">
-              <CachedIcon />Atualizar</button>
+              <CachedIcon />
+              Atualizar
+            </button>
           )}
           {id && !isEditing && (
-              <button className="button button-delete" type="button" onClick={handleDelete}>
-                <DeleteIcon /> Apagar
-              </button>
+            <button
+              className="button button-delete"
+              type="button"
+              onClick={handleDelete}
+            >
+              <DeleteIcon /> Apagar
+            </button>
           )}
         </div>
       </form>
