@@ -30,7 +30,6 @@ function Login() {
           })
         );
         localStorage.setItem("token", response.data.token);
-        // Navegar para a rota '/root'
         navigate("/root");
       })
       .catch((error) => {
@@ -40,8 +39,8 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <form className="form-group" onSubmit={handleLogin}>
+    <div className="container-login">
+      <form className="form-group-login" onSubmit={handleLogin}>
         <img
           src={process.env.PUBLIC_URL + "/assets/brasaoUFT.png"}
           alt="Logo UFT"
@@ -63,7 +62,7 @@ function Login() {
             Login
           </button>
           <button
-            type="button" // Isso evita que o botão submeta o formulário
+            type="button"
             className="cadastrar"
             onClick={() => navigate("/cadastro")}
           >

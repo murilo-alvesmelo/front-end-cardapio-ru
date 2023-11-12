@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Esta linha irá centralizar os filhos verticalmente se necessário */
+    align-items: center;
     justify-content: space-between;
     width: 100%;
   }

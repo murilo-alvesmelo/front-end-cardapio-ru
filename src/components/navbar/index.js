@@ -58,19 +58,20 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="header">
+    <nav className="header-nav">
       {isLoggedIn && (
         <>
           <Grid container spacing={5}>
             <Grid item xs={1} className="nav-img-icon">
               {["left"].map((anchor) => (
-                <div key={anchor}>
+                <div key={anchor} className="button-menu">
                   <Button
                     style={{ color: "#fff" }}
                     onClick={toggleDrawer(anchor, true)}
                   >
                     <MenuIcon />
                   </Button>
+                  <div>SCRU</div>
                   <Drawer
                     anchor={anchor}
                     open={leftDrawer[anchor]}

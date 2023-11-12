@@ -3,15 +3,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;  /* Esta linha define a altura do body como a altura total da janela */
-    margin: 0;      /* Remove margens padrão */
+    height: 100vh; 
+    margin: 0;    
 }
 
 .container {
-    width: 280px;
+    font-family: Arial, sans-serif;
     padding: 20px;
+    background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -59,9 +63,9 @@ button {
 }
 
 button.login {
-    background-color: #FFD700; 
+    background-color: #FDB92E; 
 }
 
 button.cadastrar {
-    background-color: #007BFF; 
+    background-color: #005484; 
 }
