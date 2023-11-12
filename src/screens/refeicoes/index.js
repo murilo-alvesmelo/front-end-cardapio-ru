@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CalendarMonth from '@mui/icons-material/CalendarMonth';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import CachedIcon from '@mui/icons-material/Cached';
 import Restaurant from '@mui/icons-material/Restaurant';
 import api from "../../services/api";
 import "./styles.css";
@@ -31,7 +34,7 @@ function Refeicoes() {
           console.error("Erro na requisição:", error);
         });
     } else {
-      setIsEditing(true); 
+      setIsEditing(true); // Modo de cadastro
     }
   }, [id]);
 
@@ -59,8 +62,32 @@ function Refeicoes() {
     }
   };
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm("Tem certeza que deseja apagar esta refeição?");
+    if (confirmDelete && id) {
+      try {
+        await api.delete(`/cardapio/${id}`);
+        alert("Refeição apagada com sucesso!");
+        navigate('/root');
+      } catch (error) {
+        console.error(error);
+        alert("Erro ao apagar refeição.");
+      }
+    }
+  };
+
   const toggleEditing = () => {
     setIsEditing((prev) => !prev);
+  };
+
+  const getTitle = () => {
+    if (id && isEditing) {
+      return "Editar Refeição";
+    } else if (id) {
+      return "Visualizar Refeição";
+    } else {
+      return "Cadastro de Refeições";
+    }
   };
 
   return (
@@ -68,7 +95,7 @@ function Refeicoes() {
       <form onSubmit={handleSubmit}>
         <div className="form-header">
           <ArrowBackIcon className="icone-voltar" onClick={() => navigate('/root')} />
-          <h2 className="form-title">{id ? "Editar Refeição" : "Cadastro de Refeições"}</h2>
+          <h2 className="form-title">{getTitle()}</h2>
         </div>
         <div className="form-group">
           <CalendarMonth className="input-icon" />
@@ -159,10 +186,17 @@ function Refeicoes() {
             <button className="button" type="submit">Salvar</button>
           )}
           {id && !isEditing && (
-            <button className="button" type="button" onClick={toggleEditing}>Editar</button>
+            <button className="button" type="button" onClick={toggleEditing}>
+              <EditIcon />Editar</button>
           )}
           {id && isEditing && (
-            <button className="button" type="submit">Atualizar</button>
+            <button className="button" type="submit">
+              <CachedIcon />Atualizar</button>
+          )}
+          {id && !isEditing && (
+              <button className="button button-delete" type="button" onClick={handleDelete}>
+                <DeleteIcon /> Apagar
+              </button>
           )}
         </div>
       </form>

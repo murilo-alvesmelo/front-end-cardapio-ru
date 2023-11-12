@@ -54,7 +54,10 @@
     transition: background-color 0.3s ease;
     background-color: #007bff;
     color: white;
-    margin-right: 10px;
+    margin-right: 10px;    
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center; 
 }
 
 .button:hover {
@@ -66,5 +69,17 @@
 }
 
 .button.secondary:hover {
+    background-color: #b02a37;
+}
+
+.button-delete {
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center; 
+    background-color: #dc3545;
+    color: white;
+}
+
+.button-delete:hover {
     background-color: #b02a37;
 }

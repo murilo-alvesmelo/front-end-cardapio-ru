@@ -32,7 +32,7 @@ function App() {
             <Route path="/root" element={<Root />}>
               <Route index element={<Listagem />} />
               <Route path="refeicoes" element={<Refeicoes />} />
-              <Route path="refeicoes/:id" element={<Refeicoes />} /> {/* Rota para visualizar uma refeição específica */}
+              <Route path="refeicoes/:id" element={<Refeicoes />} />
               <Route path="editar-refeicao/:id" element={<Refeicoes isEditing={true} />} />
             </Route>
           </Route>
