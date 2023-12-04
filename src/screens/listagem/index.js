@@ -58,6 +58,8 @@ function Listagem() {
                 <TableCell>Dia</TableCell>
                 <TableCell>Dia da semana</TableCell>
                 <TableCell>Prato</TableCell>
+                <TableCell>Sobremesa</TableCell>
+                <TableCell>Tipo</TableCell>
                 <TableCell>Ação</TableCell>
               </TableRow>
             </TableHead>
@@ -72,6 +74,8 @@ function Listagem() {
                     {moment(refeicao.estimateAt).locale("pt-br").format("dddd")}
                   </TableCell>
                   <TableCell align="center">{refeicao.refeicao}</TableCell>
+                  <TableCell align="center">{refeicao.sobremesa}</TableCell>
+                  <TableCell align="center">{refeicao.tipo}</TableCell>
                   <TableCell align="center">
                     <Button
                       variant="contained"
