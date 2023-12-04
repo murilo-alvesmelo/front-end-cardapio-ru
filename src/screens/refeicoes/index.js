@@ -17,6 +17,8 @@ function Refeicoes() {
     leguminosas: "",
     carboidrato: "",
     estimateAt: "",
+    sobremesa: "",
+    tipo: ""
   });
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
@@ -100,6 +102,7 @@ function Refeicoes() {
       <div className="div-refeicoes">
         <h2>{getTitle()}</h2>
         <form onSubmit={handleSubmit}>
+        <div className='inputs-collumn-refeicoes'>
           <div className="form-group">
             <CalendarMonth className="input-icon" />
             <label htmlFor="estimateAt" className="input-label">
@@ -131,6 +134,8 @@ function Refeicoes() {
               disabled={!isEditing}
             />
           </div>
+          </div>
+          <div className='inputs-collumn-refeicoes'>
           <div className="form-group">
             <Restaurant className="input-icon" />
             <label htmlFor="salada" className="input-label">
@@ -163,6 +168,8 @@ function Refeicoes() {
               disabled={!isEditing}
             />
           </div>
+          </div>
+          <div className='inputs-collumn-refeicoes'>
           <div className="form-group">
             <Restaurant className="input-icon" />
             <label htmlFor="leguminosas" className="input-label">
@@ -195,7 +202,43 @@ function Refeicoes() {
               disabled={!isEditing}
             />
           </div>
-
+          </div>
+          <div className='inputs-collumn-refeicoes'>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="carboidrato" className="input-label">
+              Sobremesa
+            </label>
+            <input
+              className="input-field"
+              type="text"
+              id="sobremesa"
+              name="sobremesa"
+              placeholder="Digite a sobremesa"
+              value={form.sobremesa}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </div>
+          <div className="form-group">
+            <Restaurant className="input-icon" />
+            <label htmlFor="carboidrato" className="input-label">
+              Almoço/Janta
+            </label>
+            <select
+              className="input-field"
+              name="tipo"
+              disabled={!isEditing}
+              defaultValue={"Selecione"}
+              value={form.tipo}
+              onChange={handleChange}
+            >
+              <option value="" selected disabled hidden>Escolha</option>
+              <option value="Janta">Janta</option>
+              <option value="Almoço">Almoço</option>
+            </select>
+          </div>
+          </div>
           <div className="button-group">
             <div className="div-button">
               <button
